@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.27.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  prometheus-exporter:
+    image: prom/snmp-exporter:v0.20.0
+    ports:
+      - "9116:9116"
+    volumes:
+      - ./snmp.yml:/etc/snmp_exporter/snmp.yml
+  
+  speedtest-exporter:
+    image: billimek/prometheus-speedtest-exporter:1.1.0
+    ports:
+      - "9469:9469"
+
+  grafana:
+    image: grafana/grafana:7.5.6
+    ports:
+      - "3000:3000"
