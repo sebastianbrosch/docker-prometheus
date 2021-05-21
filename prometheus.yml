@@ -1,0 +1,23 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  scrape_timeout:      10s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['192.168.0.10:9090']
+  - job_name: 'speedtest'
+    static_configs:
+      - targets:
+        - 192.168.0.10:9469
+    metrics_path: /probe
+    params:
+      script: [speedtest]
+    scrape_interval: 60m
+    scrape_timeout: 90s
+  - job_name: 'script_exporter'
+    static_configs:
+      - targets:
+        - 192.168.0.10:9469
+    metrics_path: /metrics
