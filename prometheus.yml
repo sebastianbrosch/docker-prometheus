@@ -15,9 +15,20 @@ scrape_configs:
     params:
       script: [speedtest]
     scrape_interval: 60m
-    scrape_timeout: 90s
-  - job_name: 'script_exporter'
+    scrape_timeout: 10m
+  - job_name: 'snmp'
     static_configs:
       - targets:
-        - 192.168.0.10:9469
-    metrics_path: /metrics
+        - 172.23.16.2
+    metrics_path: /snmp
+    params:
+      module: [if_mib]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.0.10:9116
+    scrape_interval: 3m
+    scrape_timeout: 60s
