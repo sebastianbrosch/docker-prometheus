@@ -30,5 +30,8 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 192.168.0.10:9116
-    scrape_interval: 3m
-    scrape_timeout: 60s
+    scrape_interval: 120s
+    scrape_timeout: 15s
+  - job_name: 'rpi'
+    static_configs:
+      - targets: ['192.168.0.10:9100']
