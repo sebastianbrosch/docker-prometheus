@@ -15,7 +15,7 @@ scrape_configs:
     params:
       script: [speedtest]
     scrape_interval: 60m
-    scrape_timeout: 10m
+    scrape_timeout: 35s
   - job_name: 'snmp'
     static_configs:
       - targets:
