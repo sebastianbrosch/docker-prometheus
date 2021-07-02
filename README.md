@@ -1,6 +1,12 @@
 # Docker - Prometheus / Grafana
 Monitoring with Prometheus running on a Docker Stack.
 
+## Used Docker Images
+ - [Prometheus](https://hub.docker.com/r/prom/prometheus)
+ - [SNMP Exporter](https://hub.docker.com/r/prom/snmp-exporter)
+ - [Grafana](https://hub.docker.com/r/grafana/grafana)
+ - [Speedtest Exporter](https://hub.docker.com/r/billimek/prometheus-speedtest-exporter)
+
 ## Devices
 Device | IP
 :------ | :---
