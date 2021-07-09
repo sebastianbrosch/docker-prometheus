@@ -1,0 +1,40 @@
+modules:
+  if_mib:
+    walk: [sysUpTime, interfaces, ifXTable]
+    version: 3
+    auth:
+      username: <username>
+      security_level: authPriv
+      password: <secure-password>
+      auth_protocol: SHA
+      priv_protocol: DES
+      priv_password: <secure-password>
+    lookups:
+      - source_indexes: [ifIndex]
+        lookup: ifAlias
+      - source_indexes: [ifIndex]
+        lookup: ifDescr
+      - source_indexes: [ifIndex]
+        lookup: ifName
+    overrides:
+      ifAlias:
+        ignore: true
+      ifDescr:
+        ignore: true
+      ifName:
+        ignore: true
+      ifType:
+        type: EnumAsInfo
+  printer_mib:
+    walk:
+      - 1.3.6.1.2.1.43.8.2.1.9   #prtInputMaxCapacity
+      - 1.3.6.1.2.1.43.8.2.1.10  #prtInputCurrentLevel
+      - 1.3.6.1.2.1.43.8.2.1.11  #prtInputStatus
+      - 1.3.6.1.2.1.43.8.2.1.12  #prtInputMediaName
+      - 1.3.6.1.2.1.43.8.2.1.13  #prtInputName
+      - 1.3.6.1.2.1.43.11.1.1.6  #prtMarkerSuppliesDescription
+      - 1.3.6.1.2.1.43.11.1.1.8  #prtMarkerSuppliesMaxCapacity
+      - 1.3.6.1.2.1.43.11.1.1.9  #prtMarkerSuppliesLevel
+    version: 2
+    auth:
+      community: public
