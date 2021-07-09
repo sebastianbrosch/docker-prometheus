@@ -22,7 +22,7 @@ services:
       - "9469:9469"
 
   grafana:
-    image: grafana/grafana:8.0.4
+    image: grafana/grafana:8.0.5
     ports:
       - "3000:3000"
     volumes:
