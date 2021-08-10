@@ -16,26 +16,35 @@ Managed Switch (SNMP) | 192.168.0.100
 ## Querys (PromQL)
 ### Raspberry Pi running the Monitoring
 
-**CPU Usage**
+#### CPU Usage
 ```
-100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle", instance="192.168.0.10:9100"}[1m])) * 100)
+100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle", instance="192.168.0.10:9100"}[30s])) * 100)
 ```
-**Temperature**
+
+#### Temperature
+
+```
+avg(node_hwmon_temp_celsius{instance="192.168.0.10:9100"})
+```
+or
 ```
 node_thermal_zone_temp{instance="192.168.0.10:9100"}
 ```
-**Disk Space (HDD / SSD / SD-Card)**
 
-Free Space:
+#### Disk Space
+
+Available Space:
 ```
-node_filesystem_free_bytes{mountpoint="/", instance="192.168.0.10:9100"}
+node_filesystem_avail_bytes{mountpoint="/", instance="192.168.0.10:9100"}
 ```
+
 Used Space:
 ```
-node_filesystem_size_bytes{mountpoint="/", instance="192.168.0.10:9100"} - node_filesystem_free_bytes{mountpoint="/", instance="192.168.0.10:9100"}
+node_filesystem_size_bytes{mountpoint="/", instance="192.168.0.10:9100"} - node_filesystem_avail_bytes{mountpoint="/", instance="192.168.0.10:9100"}
 ```
 
-**Memory Usage (RAM)**
+#### Memory Usage (RAM)
+
 ```
 node_memory_MemTotal_bytes{instance="192.168.0.10:9100"} - node_memory_MemAvailable_bytes{instance="192.168.0.10:9100"}
 ```
@@ -44,11 +53,12 @@ node_memory_MemTotal_bytes{instance="192.168.0.10:9100"} - node_memory_MemAvaila
 
 Received
 ```
-irate(node_network_receive_bytes_total{device="eth0", job="rpi"}[30s])*8
+rate(node_network_receive_bytes_total{device="eth0", instance="192.168.0.10:9100"}[30s])*8
 ```
+
 Sent
 ```
-irate(node_network_transmit_bytes_total{device="eth0", job="rpi"}[30s])*8
+rate(node_network_transmit_bytes_total{device="eth0", instance="192.168.0.10:9100"}[30s])*8
 ```
 
 ## Reloading Prometheus configuration
