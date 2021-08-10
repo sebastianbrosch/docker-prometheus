@@ -39,3 +39,10 @@ node_filesystem_size_bytes{mountpoint="/", instance="192.168.0.10:9100"} - node_
 ```
 node_memory_MemTotal_bytes{instance="192.168.0.10:9100"} - node_memory_MemAvailable_bytes{instance="192.168.0.10:9100"}
 ```
+## Reloading Prometheus configuration
+
+After changing the Prometheus configuration you have to reload Prometheus, using this command:
+
+```
+docker exec $(docker ps -q --filter "name=prometheus\.") killall -HUP prometheus
+```
