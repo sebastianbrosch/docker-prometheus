@@ -39,6 +39,18 @@ node_filesystem_size_bytes{mountpoint="/", instance="192.168.0.10:9100"} - node_
 ```
 node_memory_MemTotal_bytes{instance="192.168.0.10:9100"} - node_memory_MemAvailable_bytes{instance="192.168.0.10:9100"}
 ```
+
+#### Network Traffic on Ethernet (eth0)
+
+Received
+```
+irate(node_network_receive_bytes_total{device="eth0", job="rpi"}[30s])*8
+```
+Sent
+```
+irate(node_network_transmit_bytes_total{device="eth0", job="rpi"}[30s])*8
+```
+
 ## Reloading Prometheus configuration
 
 After changing the Prometheus configuration you have to reload Prometheus, using this command:
