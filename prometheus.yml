@@ -48,6 +48,22 @@ scrape_configs:
         replacement: 192.168.0.10:9115
     scrape_interval: 300s
     scrape_timeout: 5s
+  - job_name: 'printer'
+    static_configs:
+      - targets:
+        - 192.168.0.150
+    metrics_path: /snmp
+    params:
+      module: [printer_mib]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 172.23.16.5:9116
+    scrape_interval: 60m
+    scrape_timeout: 15s
   - job_name: 'rpi'
     static_configs:
       - targets: ['192.168.0.10:9100']
