@@ -2,16 +2,18 @@
 Monitoring with Prometheus running on a Docker Stack.
 
 ## Used Docker Images
- - [Prometheus](https://hub.docker.com/r/prom/prometheus)
- - [SNMP Exporter](https://hub.docker.com/r/prom/snmp-exporter)
- - [Grafana](https://hub.docker.com/r/grafana/grafana)
- - [Speedtest Exporter](https://hub.docker.com/r/billimek/prometheus-speedtest-exporter)
+ - Prometheus ([Docker Hub](https://hub.docker.com/r/prom/prometheus) - [GitHub](https://github.com/prometheus/prometheus))
+ - SNMP exporter ([Docker Hub](https://hub.docker.com/r/prom/snmp-exporter) - [GitHub](https://github.com/prometheus/snmp_exporter))
+ - Grafana ([Docker Hub](https://hub.docker.com/r/grafana/grafana) - [GitHub](https://github.com/grafana/grafana))
+ - Speedtest exporter ([Docker Hub](https://hub.docker.com/r/billimek/prometheus-speedtest-exporter) - [GitHub](https://github.com/billimek/prometheus-speedtest-exporter))
+ - Blackbox exporter ([Docker Hub](https://hub.docker.com/r/prom/blackbox-exporter) - [GitHub](https://github.com/prometheus/blackbox_exporter))
 
 ## Devices
 Device | IP
 :------ | :---
 Raspberry Pi running Prometheus / Grafana | 192.168.0.10
 Managed Switch (SNMP) | 192.168.0.100
+Printer (SNMP) | 192.168.0.150
 
 ## Querys (PromQL)
 ### Raspberry Pi running the Monitoring
