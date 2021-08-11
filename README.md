@@ -68,3 +68,15 @@ After changing the Prometheus configuration you have to reload Prometheus, using
 ```
 docker exec $(docker ps -q --filter "name=prometheus\.") killall -HUP prometheus
 ```
+
+## Clean-Up
+
+Remove unused images:
+```
+docker image prune --all
+```
+
+Remove unused container:
+```
+docker container prune
+```
