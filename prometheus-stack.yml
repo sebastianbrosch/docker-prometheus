@@ -16,6 +16,13 @@ services:
     volumes:
       - ./snmp.yml:/etc/snmp_exporter/snmp.yml
   
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.19.0
+    ports:
+      - "9115:9115"
+    volumes:
+      - ./blackbox.yml:/etc/blackbox_exporter/config.yml
+  
   speedtest-exporter:
     image: billimek/prometheus-speedtest-exporter:1.1.0
     ports:
