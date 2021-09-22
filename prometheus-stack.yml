@@ -8,6 +8,11 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=90d'
+      - '--storage.tsdb.retention.size=7GB'
 
   prometheus-exporter:
     image: prom/snmp-exporter:v0.20.0
