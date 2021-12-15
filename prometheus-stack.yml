@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   prometheus:
-    image: prom/prometheus:v2.31.1
+    image: prom/prometheus:v2.32.0
     ports:
       - "9090:9090"
     volumes:
@@ -34,7 +34,7 @@ services:
       - "9469:9469"
 
   grafana:
-    image: grafana/grafana:8.3.2
+    image: grafana/grafana:8.3.3
     ports:
       - "3000:3000"
     volumes:
