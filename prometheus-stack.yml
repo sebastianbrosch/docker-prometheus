@@ -22,7 +22,7 @@ services:
       - ./snmp.yml:/etc/snmp_exporter/snmp.yml
   
   blackbox-exporter:
-    image: prom/blackbox-exporter:v0.19.0
+    image: prom/blackbox-exporter:v0.20.0
     ports:
       - "9115:9115"
     volumes:
@@ -34,7 +34,7 @@ services:
       - "9469:9469"
 
   grafana:
-    image: grafana/grafana:8.4.5
+    image: grafana/grafana:8.4.6
     ports:
       - "3000:3000"
     volumes:
